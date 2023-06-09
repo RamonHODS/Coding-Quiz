@@ -53,16 +53,18 @@ timer.addEventListener("click", function () {
         }, 1000);
     }
     render(questionIndex);
-});
+console.log('hi');
+}); 
 
 function render(questionIndex) {
     questionsDiv.innerHTML = "";
     ulCreate.innerHTML = "";
-    for (var i = 0; i < questions.length; i++) {
-        var userQuestion = questions[questionIndex].title;
-        var userChoices = questions[questionIndex].choices;
-        questionsDiv.textContent = userQuestion;
-    }
+
+    var userQuestion = questions[questionIndex].title;
+    var userChoices = questions[questionIndex].choices;
+
+    questionsDiv.textContent = userQuestion;
+
     userChoices.forEach(function (newItem) {
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
@@ -74,7 +76,7 @@ function render(questionIndex) {
 function compare(event) {
     var element = event.target;
 
-    if (element.matches("li")) {
+    if (element.tagName === "LI") {
 
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
@@ -164,7 +166,7 @@ function allDone() {
             allScores.push(finalScore);
             var newScore = JSON.stringify(allScores);
             localStorage.setItem("allScores", newScore);
-            window.location.replace("./HighScores.html");
+            window.location.replace("./highScores.html");
         }
     });
 
